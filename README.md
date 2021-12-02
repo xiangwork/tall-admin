@@ -40,6 +40,8 @@ cd tall-admin
 cp .env.example .env
 #configure .env variables
 
+php artisan key:generate
+
 composer i
 
 npm i
