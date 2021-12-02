@@ -1,0 +1,15 @@
+.table{
+    td{
+        vertical-align: middle;
+    }
+
+    .nowrap{
+        white-space:nowrap;
+    }
+}
+
+.table.nowrap{
+    td{
+        white-space:nowrap;
+    }
+}

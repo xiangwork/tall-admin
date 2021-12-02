@@ -1,0 +1,46 @@
+<?php
+
+namespace App\Http\Livewire\{@className};
+
+use Livewire\Component;
+use Livewire\WithFileUploads;
+
+class {@className}Form extends Component
+{
+    //public $image;
+    //public $myFile;
+
+    //use WithFileUploads;
+
+    public $type;
+
+
+    use {@className}State;
+
+    public function mount(${@primaryKey} = null)
+    {
+        $this->previous = url()->previous();
+
+        if (${@primaryKey}){
+            $this->edit(${@primaryKey});
+        }
+
+        $this->breadcrumbs = [
+            ["link" => "#", "title" => "Admin"],
+            ["link" => route('{@classNameLower}'), "title" => "{@className}"],
+            ["link" => url('/'), "title" => "{@className} Form"],
+        ];
+
+        session()->put('active', '{@classNameLower}');
+        session()->put('expanded', 'admin');
+    }
+
+    public function render()
+    {
+        if(count($this->getErrorBag()->all()) > 0){
+            $this->emit('showToast',["message" => "Mohon lengkapi form", "type" => "error", "reload"=>false]);
+        }
+        return view('livewire.{@classNameLower}.{@classNameLower}-form')
+            ->layout('layouts.admin');
+    }
+}

@@ -1,0 +1,100 @@
+<?php
+
+namespace App\Http\Livewire\{@className};
+
+use App\Models\{@className};
+use Illuminate\Support\Str;
+
+trait {@className}State
+{
+    public $previous;
+
+    public array ${@classNameLower} = {@generatedProps};
+
+    public $updateMode = false;
+
+    public array $breadcrumbs = [
+        ["link" => "#", "title" => "Admin"],
+        ["link" => "#", "title" => "{@className}"],
+    ];
+
+
+    public function save()
+    {
+        $this->updateMode ? $this->update() : $this->store();
+    }
+
+    public function store()
+    {
+       {@validate}
+
+        $this->updateMode = false;
+
+        $save = $this->handleFormRequest(new {@className});
+
+        if ($save) {
+                                    $this->reset("{@classNameLower}");
+            session()->flash('message', '{@className} berhasil ditambahkan.');
+                       $this->back();
+
+        }else{
+            abort('403', '{@className} gagal ditambahkan');
+        }
+    }
+
+    public function edit($id)
+    {
+        $this->updateMode = true;
+        ${@classNameLower} = {@className}::where('{@primaryKey}', $id)->first();
+        $this->{@classNameLower} = ${@classNameLower}->toArray();
+    }
+
+    public function update()
+    {
+       {@validate}
+
+        $save = false;
+
+        if ($this->{@classNameLower}["{@primaryKey}"]) {
+            $db = {@className}::find($this->{@classNameLower}["{@primaryKey}"]);
+            $save = $this->handleFormRequest($db);
+        } else {
+            abort('403', '{@className} Not Found');
+        }
+
+        if ($save) {
+                        $this->reset("{@classNameLower}");
+            session()->flash('message', '{@className} berhasil diupdate.');
+            $this->back();
+        }
+    }
+
+    public function destroy($id)
+    {
+        $delete = {@className}::destroy($id);
+        if ($delete) {
+            $this->emit("refreshDt");
+            $this->emit("showToast", ["message" => "{@className}s Deleted Successfully", "type" => "success"]);
+        } else {
+            $this->emit("showToast", ["message" => "Delete Failed", "type" => "success"]);
+        }
+        $this->reset();
+    }
+
+    private function handleFormRequest($db): bool
+    {
+        try {
+            {@handleRequest}
+            return $db->save();
+        }catch (\Exception $e){
+            return $e->getTraceAsString();
+        }
+    }
+
+    public function back()
+    {
+        redirect($this->previous);
+    }
+
+
+}

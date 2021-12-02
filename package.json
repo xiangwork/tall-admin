@@ -1,0 +1,52 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "npm run development",
+        "development": "mix",
+        "watch": "mix watch",
+        "watch-poll": "mix watch -- --watch-options-poll=1000",
+        "hot": "mix watch --hot",
+        "prod": "npm run production",
+        "production": "mix --production"
+    },
+    "devDependencies": {
+        "@tailwindcss/forms": "^0.2.1",
+        "alpinejs": "^2.7.3",
+        "autoprefixer": "^10.1.0",
+        "axios": "^0.21",
+        "browser-sync": "^2.27.5",
+        "browser-sync-webpack-plugin": "^2.3.0",
+        "jquery-ui": "^1.12.1",
+        "laravel-mix": "^6.0.6",
+        "livewire-sortable": "^0.2.2",
+        "lodash": "^4.17.19",
+        "postcss": "^8.2.1",
+        "postcss-import": "^12.0.1",
+        "resolve-url-loader": "^4.0.0",
+        "sass": "^1.37.5",
+        "sass-loader": "^12.1.0",
+        "tailwindcss": "^2.0.2"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome": "^1.1.8",
+        "@popperjs/core": "^2.9.3",
+        "@tailwindcss/forms": "^0.3.3",
+        "@tiptap/core": "^2.0.0-beta.102",
+        "@tiptap/starter-kit": "^2.0.0-beta.101",
+        "alpinejs": "^3.2.3",
+        "bootstrap": "^5.1.0",
+        "feather-icons": "^4.28.0",
+        "font-awesome": "^4.7.0",
+        "izimodal": "^1.5.1",
+        "jquery": "^3.6.0",
+        "metismenu": "^3.0.7",
+        "micromodal": "^0.4.6",
+        "modaal": "^0.4.4",
+        "moment": "^2.29.1",
+        "noty": "^3.2.0-beta-deprecated",
+        "pikaday": "^1.8.2",
+        "select2": "^4.1.0-rc.0",
+        "turbolinks": "^5.2.0",
+        "vue": "^2.6.14"
+    }
+}
