@@ -26,13 +26,35 @@
 
 ## Installation
 
-1. clone this repo
-2. composer i
-3. npm i
-4. npm run prod or dev for development
-5. php artisan migrate
-6. php artisan storage:link
-7. php artisan db:seed
+### Clone Repo
+
+```bash
+git clone https://github.com/manusiakemos/tall-admin.git
+```
+
+### Run Command
+
+```bash
+cd tall-admin
+
+cp .env.example .env
+#configure .env variables
+
+composer i
+
+npm i
+
+npm run prod 
+#or npm run dev for development
+
+php artisan migrate
+
+php artisan storage:link
+
+php artisan db:seed
+```
+
+> make sure to upload to your hosting to make sure it works
 
 ## Seeder
 
@@ -194,8 +216,6 @@ More info
 ```vue
 <x-input.datepicker wire:model.defer="invitation.place"></x-input.text>
 ```
-
-
 
 #### Text
 
