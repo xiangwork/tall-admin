@@ -498,18 +498,26 @@ public array $headers = [
 	<x-slot name="step_3">
 		Last
 	</x-slot>
-</x-input.wizard-form>
+</x-ui.wizard-form>
 ```
 
 
 
 ## Config
 
+to use setting table config change config/app enabled_setting to true
+
+```php
+#config/app.php
+'enabled_setting' => false,
+```
+
 Use config from setting table like this
 
 ```php
-config('setting.app_name.value') ?? config('app.name')
- //name, and value
+#for example if you want to get setting App Name value
+config('setting.app_name.value') ?? ''
+#name, and value
 ```
 
 tailwind css purge
