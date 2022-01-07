@@ -18,6 +18,7 @@ class CrudController extends Controller
     public string $classNameLower;
     public string $table;
     public string $classNameSlug;
+    public $modal;
 
     public function index()
     {
@@ -50,6 +51,7 @@ class CrudController extends Controller
         $this->classNameLower = Str::slug($request->class, "_");
         $this->classNameSlug = strtolower(Str::snake($request->class, "-"));
         $this->table = $request->table;
+        $this->modal = $request->modal;
 
         $this->handleRequest($request);
         if ($request->migrate) {
@@ -76,7 +78,8 @@ class CrudController extends Controller
 
         Artisan::call("ide-helper:models", ['--write' => 'true']);
 
-        return response()->json(['status' => $save, 'message' => 'Successfully Generated']);
+        return response()
+            ->json(['status' => $save ? '200' : '403', 'message' => $save ? 'Successfully Generated' : 'Something Wrong Happend']);
     }
 
     private function handleRequest(Request $request)
@@ -177,19 +180,29 @@ class CrudController extends Controller
             $generatedProps,
         ];
 
-        $stub_template = file_get_contents(base_path("stubs/custom_livewire.stub"));
+       if ($this->modal){
+           $stub_template = file_get_contents(base_path("stubs/custom_livewire_modal.stub"));
+       }else{
+           $stub_template = file_get_contents(base_path("stubs/custom_livewire.stub"));
+       }
         $template = str_replace($stubTemplate, $stubReplaceTemplate, $stub_template);
         $path = app_path("/Http/Livewire/{$this->className}");
         File::isDirectory($path) or File::makeDirectory($path, 0777, true, true);
         file_put_contents(app_path("/Http/Livewire/{$this->className}/{$this->className}Page.php"), $template);
 
-        $stub_template = file_get_contents(base_path("stubs/custom_livewire_trait.stub"));
+        if ($this->modal){
+            $stub_template = file_get_contents(base_path("stubs/custom_livewire_modal_trait.stub"));
+        }else{
+            $stub_template = file_get_contents(base_path("stubs/custom_livewire_trait.stub"));
+        }
         $template = str_replace($stubTemplate, $stubReplaceTemplate, $stub_template);
         file_put_contents(app_path("/Http/Livewire/{$this->className}/{$this->className}State.php"), $template);
 
-        $stub_template = file_get_contents(base_path("stubs/custom_livewire_form.stub"));
-        $template = str_replace($stubTemplate, $stubReplaceTemplate, $stub_template);
-        file_put_contents(app_path("/Http/Livewire/{$this->className}/{$this->className}Form.php"), $template);
+       if (!$this->modal){
+           $stub_template = file_get_contents(base_path("stubs/custom_livewire_form.stub"));
+           $template = str_replace($stubTemplate, $stubReplaceTemplate, $stub_template);
+           file_put_contents(app_path("/Http/Livewire/{$this->className}/{$this->className}Form.php"), $template);
+       }
 
         $stub_template = file_get_contents(base_path("stubs/table_class.stub"));
         $template = str_replace($stubTemplate, $stubReplaceTemplate, $stub_template);
@@ -201,8 +214,10 @@ class CrudController extends Controller
         $route = 'Route::get("/' . $this->classNameLower . '", App\Http\Livewire\\' . $this->className . '\\' . $this->className . 'Page::class)->name("' . $this->classNameLower . '");';
         File::append(base_path("routes/web.php"), $route);
 
-        $route2 = "\n".'Route::get("/' . $this->classNameLower . '/form/{'.$this->pk['name'].'?}", App\Http\Livewire\\' . $this->className . '\\' . $this->className . 'Form::class)->name("' . $this->classNameLower. '.form");';
-        File::append(base_path("routes/web.php"), $route2);
+        if (!$this->modal){
+            $route2 = "\n".'Route::get("/' . $this->classNameLower . '/form/{'.$this->pk['name'].'?}", App\Http\Livewire\\' . $this->className . '\\' . $this->className . 'Form::class)->name("' . $this->classNameLower. '.form");';
+            File::append(base_path("routes/web.php"), $route2);
+        }
     }
 
     private function generateMigration()
@@ -244,7 +259,11 @@ class CrudController extends Controller
             $this->classNameSlug,
             $this->classNameLower,
         ];
-        $stub_template = file_get_contents(base_path("stubs/page.stub"));
+        if ($this->modal){
+            $stub_template = file_get_contents(base_path("stubs/page_modal.stub"));
+        }else{
+            $stub_template = file_get_contents(base_path("stubs/page.stub"));
+        }
         $template = str_replace($stubTemplate, $stubReplaceTemplate, $stub_template);
         $path = resource_path("views/livewire/{$this->classNameLower}");
         File::isDirectory($path) or File::makeDirectory($path, 0777, true, true);
@@ -270,11 +289,18 @@ class CrudController extends Controller
         ];
 
 
-        $subject = file_get_contents(base_path("stubs/form.stub"));
-        $template = str_replace($search, $replace, $subject);
+       if ($this->modal){
+           $stub_template = file_get_contents(base_path("stubs/form_modal.stub"));
+           $pathToWrite = resource_path("views/livewire/{$this->classNameLower}/_{$this->classNameLower}-form.blade.php");
+       }else{
+           $stub_template = file_get_contents(base_path("stubs/form.stub"));
+           $pathToWrite = resource_path("views/livewire/{$this->classNameLower}/{$this->classNameLower}-form.blade.php");
+       }
+
+        $template = str_replace($search, $replace, $stub_template);
         $path = resource_path("views/livewire/{$this->classNameLower}");
         File::isDirectory($path) or File::makeDirectory($path, 0777, true, true);
-        $pathToWrite = resource_path("views/livewire/{$this->classNameLower}/{$this->classNameLower}-form.blade.php");
+
         file_put_contents($pathToWrite, $template);
     }
 
@@ -290,7 +316,11 @@ class CrudController extends Controller
             $this->className,
             $this->classNameLower,
         ];
-        $stub_template = file_get_contents(base_path("stubs/action.stub"));
+       if ($this->modal){
+           $stub_template = file_get_contents(base_path("stubs/action_modal.stub"));
+       }else{
+           $stub_template = file_get_contents(base_path("stubs/action.stub"));
+       }
         $template = str_replace($stubTemplate, $stubReplaceTemplate, $stub_template);
         $path = resource_path("views/livewire/{$this->classNameLower}");
         File::isDirectory($path) or File::makeDirectory($path, 0777, true, true);

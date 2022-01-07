@@ -2,7 +2,7 @@
     <xxx-input.form-group label="{{$field['label']}}" key="{{$field['name']}}" model="{{$model}}.{{$field['name']}}">
         @switch($field['htmlType'])
             @case("file")
-            <xxx-input.filepond data-event-name="resetFilePond" wire:model="image"></xxx-input.filepond>
+            <xxx-input.filepond remove-file-event="removeFile" wire:model="image"></xxx-input.filepond>
             @break
 
             @case("date")

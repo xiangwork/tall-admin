@@ -9,7 +9,8 @@
             </a>
         </li>
 
-        <li class="nav-item" x-data="{show:{{ session('expanded') == 'admin' ? 'true' : 'false'}} }">
+        <li class="nav-item"
+            x-data="{show:{{ session('expanded') == 'admin' ? 'true' : 'false'}} }">
             <a href="javascript:void(0)" x-on:click="show = !show"
                class="text-sm flex justify-between items-center">
                 <div class="flex items-center">
@@ -21,7 +22,7 @@
             </a>
             <ul x-show="show"
                 x-transition.duration.200ms
-                class="pt-2 pl-2 overflow-x-hidden
+                class="pt-2 pl-2 overflow-x-hidden overflow-y-scroll
                        {{session('expanded') == 'admin' ? 'mm-show' : 'mm-collapse'}}">
                 @if(auth()->user()->role == 'super-admin')
                     <li class="nav-item {{ session('active') == 'user' ? 'nav-active' : ''}} ml-5">
@@ -40,8 +41,8 @@
                         Setting
                     </a>
                 </li>
-                <li class="nav-item {{session('active') == 'slidermenu' ? 'nav-active' : ''}} ml-5">
-                    <a href="{{route('slidermenu')}}" aria-expanded="false" class="text-sm">
+                <li class="nav-item {{session('active') == 'slider' ? 'nav-active' : ''}} ml-5">
+                    <a href="{{route('slider')}}" aria-expanded="false" class="text-sm">
                         Slider
                     </a>
                 </li>

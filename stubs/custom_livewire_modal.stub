@@ -10,6 +10,8 @@ class {@className}Page extends Component
 {
     use {@className}State;
 
+    protected $listeners = ['create', 'edit'];
+
     public function mount()
     {
         session()->put('active', '{@classNameLower}');
@@ -19,13 +21,7 @@ class {@className}Page extends Component
     public function render()
     {
         return view('livewire.{@classNameLower}.{@classNameLower}-page')
-            ->layout('layouts.admin');
-    }
-
-    public function hydrate()
-    {
-        $this->resetErrorBag();
-        $this->resetValidation();
+            ->layout('layouts.admin', ['htmlTitle'=>'{@classNameLower}']);
     }
 
 }

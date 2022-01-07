@@ -21,13 +21,15 @@
     <div id="header-right-part" x-data="{ isOpen: false }" x-cloak
          class="relative flex justify-end items-center w-full">
 
-        <x-ui.notifications-bar></x-ui.notifications-bar>
+        {{--        <x-ui.notifications-bar></x-ui.notifications-bar>--}}
 
         <div class="invisible md:visible">
-            <x-ui.darkmode></x-ui.darkmode>
+            <x-ui.darkmode/>
         </div>
 
-        <x-ui.avatar></x-ui.avatar>
+        <x-ui.fullscreen-button/>
+
+        <x-ui.avatar/>
     </div>
 
 </header>

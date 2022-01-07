@@ -38,6 +38,23 @@ trait RadioOptionsTrait {
         ];
     }
 
+    private function select_slider_active()
+    {
+        $this->value = "value";
+        $this->text = "text";
+        $this->placeholder = "";
+        return [
+            [
+                "value" => "1",
+                "text" => "Ya",
+            ],
+            [
+                "value" => "0",
+                "text" => "Tidak",
+            ]
+        ];
+    }
+
     private function select_setting_removable()
     {
         $this->value = "value";

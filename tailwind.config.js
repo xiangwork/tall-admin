@@ -28,7 +28,7 @@ module.exports = {
         'h-30',
         'h-40',
     ],
-    darkMode: 'class', // or 'media' or 'class'
+    darkMode: 'class',
     theme: {
         colors: {
             transparent: 'transparent',

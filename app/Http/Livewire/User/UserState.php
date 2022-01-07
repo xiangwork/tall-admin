@@ -18,8 +18,6 @@ trait UserState
 
     public $showModalForm = false;
 
-    use WithFileUploads;
-
     public array $user = [
         "user_id" => "",
         "village_id" => "",
@@ -56,15 +54,6 @@ trait UserState
             ]
         ],
     ];
-
-    public function mount($user_id = null)
-    {
-        $this->previous = url()->previous();
-
-        if ($user_id){
-            $this->edit($user_id);
-        }
-    }
 
     public function render()
     {

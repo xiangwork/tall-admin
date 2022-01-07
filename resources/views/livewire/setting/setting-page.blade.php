@@ -9,7 +9,7 @@
 
                 <div>
                     <a href="{{route('setting.form')}}">
-                        <x-ui.button variant="normal" class="mb-3 bg-blue-500 hover:bg-blue-400">Create
+                        <x-ui.button variant="normal" class="mb-3 bg-indigo-500 hover:bg-indigo-400">Create
                         </x-ui.button>
                     </a>
                     <x-ui.button variant="normal" class="btn bg-blue-500 hover:bg-blue-400 text-white mb-3 mx-1"

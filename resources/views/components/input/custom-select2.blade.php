@@ -77,7 +77,7 @@
 
     <ul x-show="show"
         x-transition
-        :class="options.length > 3 ? 'h-40' : 'h-'+options.length * 10"
+        :class="filteredOptions.length > 3 ? 'h-40' : 'h-'+filteredOptions.length * 10"
         class="absolute inset-0 top-10 bg-gray-100 dark:bg-black z-50
                 cursor-pointer rounded-md
                 overflow-visible overflow-y-scroll overflow-x-hidden">

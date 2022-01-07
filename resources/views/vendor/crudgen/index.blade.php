@@ -129,6 +129,17 @@
                                     <label class="form-check-label" :for="`${v.text}i`">@{{ v.text }}</label>
                                 </div>
                             </div>
+
+                            <div class="form-group col-lg-3">
+                                <label for="modal" class="text-capitalize">modal</label>
+                                <div v-for="(v,i) in boolean_list" class="form-check">
+                                    <input class="form-check-input"
+                                           type="radio" :id="`${v.text}i`"
+                                           v-model="data.modal"
+                                           :value="v.value">
+                                    <label class="form-check-label" :for="`${v.text}i`">@{{ v.text }}</label>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-lg-3">
@@ -321,6 +332,7 @@
                     "view": true,
                     "spa": false,
                     "model": true,
+                    "modal": true,
                     "controller": true,
                     "seeder": true,
                     "migration": true,

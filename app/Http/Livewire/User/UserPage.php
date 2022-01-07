@@ -3,7 +3,6 @@
 
 namespace App\Http\Livewire\User;
 
-
 use Livewire\Component;
 
 class UserPage extends Component

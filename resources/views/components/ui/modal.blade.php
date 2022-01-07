@@ -4,6 +4,7 @@
      aria-labelledby="{!! $attributes->get('id') !!}_label"
      aria-modal="true"
      tabindex="0"
+     x-cloak
      x-data="{open:@entangle($attributes->wire('model'))}"
      x-show="open"
      x-init="$wire.on('{!! $attributes->get('modal-show-event') !!}', ()=>{
