@@ -10,6 +10,8 @@ class UserPage extends Component
 {
     use UserState;
 
+    protected $listeners = ['create', 'edit'];
+
     public function mount()
     {
         session()->put('active', 'user');
@@ -20,12 +22,6 @@ class UserPage extends Component
     {
         return view('livewire.user.user-page')
             ->layout('layouts.admin');
-    }
-
-    public function hydrate()
-    {
-        $this->resetErrorBag();
-        $this->resetValidation();
     }
 
 }

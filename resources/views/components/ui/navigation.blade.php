@@ -9,15 +9,20 @@
             </a>
         </li>
 
-        <li class="nav-item">
-            <a href="#" class="text-sm flex justify-between items-center">
+        <li class="nav-item" x-data="{show:{{ session('expanded') == 'admin' ? 'true' : 'false'}} }">
+            <a href="javascript:void(0)" x-on:click="show = !show"
+               class="text-sm flex justify-between items-center">
                 <div class="flex items-center">
                     <i class="text-xl flex items-center fi-rr-settings"></i>
                     <span class="ml-3"> Admin </span>
                 </div>
-                <span class="flex items-center fi-rr-angle-right text-gray-400 dark:text-gray-300 mr-3"></span>
+                <span :class="{'transform rotate-90 duration-150' : show}"
+                      class="flex items-center fi-rr-angle-right text-gray-400 dark:text-gray-300 mr-3"></span>
             </a>
-            <ul class="pt-2 pl-2 {{session('expanded') == 'admin' ? 'mm-show' : 'mm-collapse'}}">
+            <ul x-show="show"
+                x-transition.duration.200ms
+                class="pt-2 pl-2 overflow-x-hidden
+                       {{session('expanded') == 'admin' ? 'mm-show' : 'mm-collapse'}}">
                 @if(auth()->user()->role == 'super-admin')
                     <li class="nav-item {{ session('active') == 'user' ? 'nav-active' : ''}} ml-5">
                         <a href="{{route('user')}}" aria-expanded="false" class="text-sm">
@@ -44,15 +49,20 @@
         </li>
 
         @if(auth()->user()->role == 'super-admin')
-            <li class="nav-item">
-                <a href="#" class="text-sm flex justify-between items-center">
+            <li class="nav-item"
+                x-on:click="show = !show"
+                x-data="{show:{{ session('expanded') == 'master' ? 'true' : 'false'}} }">
+                <a href="javascript:void(0)" class="text-sm flex justify-between items-center">
                     <div class="flex items-center">
                         <i class="text-xl flex items-center fi-rr-tool-crop"></i>
                         <span class="ml-3"> Utilities </span>
                     </div>
-                    <span class="flex items-center fi-rr-angle-right text-gray-400 dark:text-gray-300 mr-3"></span>
+                    <span :class="{'transform rotate-90 duration-150' : show}"
+                        class="flex items-center fi-rr-angle-right text-gray-400 dark:text-gray-300 mr-3"></span>
                 </a>
-                <ul class="pt-2 pl-2 {{session('expanded') == 'utilities' ? 'mm-show' : 'mm-collapse'}}">
+                <ul x-show="show"
+                    x-transition.duration.200ms
+                    class="pt-2 pl-2 {{session('expanded') == 'utilities' ? 'mm-show' : 'mm-collapse'}}">
                     <li class="nav-item {{session('active') == 'docs' ? 'nav-active' : ''}} ml-5">
                         <a target="_blank" href="https://1drv.ms/b/s!Agl0opIdLuH8mzpNPAUaNIZ1AFhY?e=cXh4M6"
                            aria-expanded="false" class="text-sm">
@@ -84,9 +94,4 @@
         @endif
     </ul>
 </div>
-@push("scripts")
-    <script data-turbolinks-eval="false" data-turbo-eval="false">
-        $("#{{$selector}}").metisMenu();
-    </script>
-@endpush
 

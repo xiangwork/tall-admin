@@ -20,7 +20,7 @@
     }
 
     .heading{
-        @apply text-lg font-bold dark:text-gray-400 text-gray-700;
+        @apply uppercase text-lg font-bold dark:text-gray-400 text-gray-700;
     }
 
     label{

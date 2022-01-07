@@ -3,7 +3,7 @@
     @foreach($options as $key => $item)
         @php($id = Str::random(8))
         <div class="mr-3">
-            <input {{$attributes->merge(['class' => "focus:border-red-400 rounded-full text-red-500"])}}
+            <input {{$attributes->merge(['class' => "focus:border-indigo-400 rounded-full text-red-500"])}}
                    type="radio"
                    wire:model="{{ $attributes->whereStartsWith('wire:model')->first() }}"
                    id="{{$id}}"

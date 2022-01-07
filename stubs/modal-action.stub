@@ -2,7 +2,8 @@
     <a href="{{route('{@classNameLower}.form', $row->{@primaryKey})}}">
         <x-ui.button class="bg-blue-500 text-white hover:bg-blue-400"
                         variant="circle"
-                        data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+                        data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"
+                        wire:click="$emit('edit',{{$row->{@primaryKey}}})">
             <span class="flex items-center fi-rr-pencil"></span>
         </x-ui.button>
     </a>

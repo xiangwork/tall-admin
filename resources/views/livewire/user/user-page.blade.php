@@ -8,10 +8,8 @@
                 <h4 class="heading mb-3 md:mb-0">User Management</h4>
 
                 <div>
-                    <a href="{{route('user.form')}}">
-                        <x-ui.button variant="normal" class="mb-3 bg-blue-500 hover:bg-blue-400">Create
-                        </x-ui.button>
-                    </a>
+                    <x-ui.button wire:click="$emit('create')"
+                                 variant="normal" class="mb-3 bg-blue-500 hover:bg-blue-400">Create</x-ui.button>
                     <x-ui.button variant="normal" class="btn bg-blue-500 hover:bg-blue-400 text-white mb-3 mx-1"
                                     wire:click="$emit('refreshDt', true)">Refresh
                     </x-ui.button>
@@ -26,6 +24,8 @@
                @endif
 
                @livewire("user.user-table")
+
+               @include('livewire.user._user-form')
            </div>
 
         </div>

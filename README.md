@@ -116,6 +116,8 @@ php artisan laravolt:indonesia:seed
 
 [Apex Charts](https://apexcharts.com/)
 
+[jQuery Mask Plugin](https://igorescobar.github.io/jQuery-Mask-Plugin/)
+
 #### CSS Libraries
 
 [LineIcons](https://lineicons.com/docs/)
@@ -147,7 +149,7 @@ $this->emit("showToast", ["message" => "", "type" => "success", "reload"=>false]
 #### Filepond
 
 ```vue
-<x-input.filepond data-event-name="eventName" wire:model="image"></x-input.filepond>
+<x-input.filepond remove-file-event="removeFile" wire:model="image"></x-input.filepond>
 ```
 
 in php add this
@@ -175,7 +177,7 @@ if ($this->image){
 		})
 		->save(public_path("/storage/$folderName/" . $thumbnail));
 
-	$this->dispatchBrowserEvent('resetFilePond');
+	$this->dispatchBrowserEvent('removeFile');
   
   $db->filename = $original;
 
@@ -213,7 +215,7 @@ More info
 
 
 
-#### Date
+#### Pikaday Datepicker
 
 ```vue
 <x-input.datepicker wire:model.defer="invitation.place"></x-input.text>
@@ -222,10 +224,15 @@ More info
 #### Text
 
 ```vue
-<x-input.text wire:model.defer="invitation.place"></x-input.text>
+<x-input.text type="text" wire:model.defer="invitation.place"></x-input.text>
 ```
 
+#### Mask Input
 
+```vue
+<x-input.mask id="" data-mask="" wire:model.lazy="" 
+              data-options="{placeholder: '__/__/____'}"/>
+```
 
 #### Textarea
 
@@ -233,16 +240,12 @@ More info
 <x-input.textarea wire:model.defer="invitation.place"></x-input.text>
 ```
 
-
-
 #### Datepicker
 
 ```vue
 <!--datepicker-->
 <x-input.datepicker wire:model=""></x-input.datepicker>
 ```
-
-
 
 #### Radio, Checkbox and Switch
 
@@ -258,9 +261,7 @@ More info
 
 ```
 
-
-
-#### Select & select2
+#### Select & Select2
 
 ```vue
 <!--select2 options should be defer and boolean-->
@@ -268,7 +269,23 @@ More info
 <x-input.select method="" wire:model.defer="" :select2="false"></x-input.select>
 ```
 
+#### Custom Select & Custom Select2
 
+```vue
+ <x-input.custom-select
+                id=""
+                wire:model=""
+                :options="$options['']"
+                text=""
+                value=""/>
+
+ <x-input.custom-select2
+                id=""
+                wire:model=""
+                :options="$options['']"
+                text=""
+                value=""/>
+```
 
 #### Summernote (WYSIWG)
 
@@ -292,8 +309,6 @@ Or in your blade if code above doesnt work
 @endpush
 ```
 
-
-
 add this to your form blade
 
 ```vue
@@ -301,8 +316,6 @@ add this to your form blade
 <x-input.summernote data-event-name="set_summernote_value" id="about" wire:model="user.about"></x-input.summernote>
 
 ```
-
-
 
 #### Location Picker Google Maps
 
@@ -446,8 +459,8 @@ public array $tabHeaders = [
 
 ```vue	
 <!--size sm, md, lg, xl, fullscreen-->
-<x-ui.modal id="modal_form" size="md" :title="$updateMode ? 'Edit' : 'Create'">
-    
+<x-ui.modal id="modal_form" wire:model="showModalForm" size="md" 
+               :title="$updateMode ? 'Edit' : 'Create'">
 </x-ui.modal>
 
 ```

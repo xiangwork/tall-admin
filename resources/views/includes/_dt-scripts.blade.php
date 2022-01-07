@@ -16,7 +16,8 @@
         });
         n.show();
     });
-    Livewire.on("refreshDt", (showNoty = false) => {
+    Livewire.on("refreshDt", (showNoty = true) => {
+        console.log('refreshDt');
         Livewire.components.getComponentsByName('{{$table}}')[0].$wire.$refresh();
         if (showNoty) {
             new Noty(

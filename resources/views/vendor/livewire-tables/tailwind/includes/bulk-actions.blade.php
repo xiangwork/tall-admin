@@ -4,7 +4,7 @@
             x-data="{ open: false }"
             @keydown.window.escape="open = false"
             x-on:click.away="open = false"
-            class="relative inline-block text-left z-10 w-full md:w-auto"
+            class="relative inline-block text-left w-full md:w-auto"
         >
             <div>
                 <span class="rounded-md shadow-sm">
@@ -35,7 +35,7 @@
                 x-transition:leave="transition ease-in duration-75"
                 x-transition:leave-start="transform opacity-100 scale-100"
                 x-transition:leave-end="transform opacity-0 scale-95"
-                class="origin-top-right absolute right-0 mt-2 w-full md:w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none z-50"
+                class="origin-top-right absolute right-0 mt-2 w-full md:w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none"
             >
                 <div class="rounded-md bg-white shadow-xs dark:bg-gray-700 dark:text-white">
                     <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">

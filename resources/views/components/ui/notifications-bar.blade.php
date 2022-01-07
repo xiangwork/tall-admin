@@ -1,5 +1,5 @@
 <div>
-    <div x-data="{ isOpen: false }" x-on:click.away="isOpen = false" x-cloak>
+    <div x-data="{ isOpen: false }" x-on:click.away="isOpen = false" x-cloak class="z-50">
         <div class="flex items-start justify-center items-center">
             <button @click="isOpen = !isOpen"
                     class="rounded-full focus:outline-none">
@@ -14,7 +14,7 @@
                 </span>
             </button>
         </div>
-        <div class="flex justify-center">
+        <div class="flex justify-center z-50">
             <button x-show.transition="isOpen" @click="isOpen = false"
                     class="fixed inset-0 cursor-default"></button>
             <div x-show.transition="isOpen" x-transition.duration.200ms

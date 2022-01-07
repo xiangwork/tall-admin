@@ -1,6 +1,6 @@
 <header
     class="w-full
-        bg-gradient-to-r from-blue-700 to-blue-600 dark:from-gray-600 dark:to-gray-800
+        bg-gradient-to-r from-indigo-600 to-blue-500 dark:from-gray-600 dark:to-gray-800
         flex justify-between items-center
         py-2 px-5">
 

@@ -34,13 +34,14 @@
     {{--    <script data-turbolinks-eval="false" data-turbo-eval="false" src="{{ asset('js/turbolinks.js') }}"></script>--}}
 
 </head>
-<body class="bg-gray-200 dark:bg-gray-900 dark:text-gray-400 text-gray-100 flex text-sm" x-data="{showSidebar : true}">
+<body class="bg-gray-200 dark:bg-gray-900 dark:text-gray-400 text-gray-100 flex text-sm"
+      x-data="{showSidebar : true}">
 
 <x-ui.sidebar></x-ui.sidebar>
 
 <div class="w-full flex flex-col h-screen overflow-y-hidden">
 
-    <x-ui.navbar></x-ui.navbar>
+    <x-ui.mobile-header></x-ui.mobile-header>
     <x-ui.header></x-ui.header>
 
     <div class="w-full overflow-x-hidden flex flex-col" id="main-content">
@@ -55,9 +56,7 @@
 </div>
 
 @livewireScripts
-<script data-turbolinks-eval="false" data-turbo-eval="false" src="{{ asset('js/after.js') }}"></script>
-{{--<script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js" data-turbolinks-eval="false" data-turbo-eval="false"></script>--}}
-
+<script data-turbolinks-eval="false" data-turbo-eval="false" src="{{ asset('js/admin_after.js') }}"></script>
 
 @stack("scripts")
 @stack("stylesAfter")

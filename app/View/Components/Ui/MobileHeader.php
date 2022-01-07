@@ -4,7 +4,7 @@ namespace App\View\Components\Ui;
 
 use Illuminate\View\Component;
 
-class Navbar extends Component
+class MobileHeader extends Component
 {
     /**
      * Mobile Navbar
@@ -23,6 +23,6 @@ class Navbar extends Component
      */
     public function render()
     {
-        return view('components.ui.navbar');
+        return view('components.ui.mobile-header');
     }
 }
