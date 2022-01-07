@@ -12,7 +12,7 @@
                         <x-ui.button variant="normal" class="mb-3 bg-indigo-500 hover:bg-indigo-400">Create
                         </x-ui.button>
                     </a>
-                    <x-ui.button variant="normal" class="btn bg-blue-500 hover:bg-blue-400 text-white mb-3 mx-1"
+                    <x-ui.button variant="normal" class="btn bg-indigo-500 hover:bg-indigo-400 text-white mb-3 mx-1"
                                     wire:click="$emit('refreshDt', true)">Refresh
                     </x-ui.button>
                 </div>
